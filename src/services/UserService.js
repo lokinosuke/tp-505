@@ -25,6 +25,12 @@ export default {
   getUser () {
     return api('/me')
   },
+  patchUser (credentials) {
+    return api('/me', {
+      method: 'PATCH',
+      body: JSON.stringify(credentials)
+    })
+  },
   getActors (pageNumber) {
     return api('/actors?page='+pageNumber)
   },

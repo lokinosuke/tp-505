@@ -9,8 +9,7 @@
       class="w-full mb-2 p-1 border border-gray-300 rounded"
     />
 
-    <div class="flex flex-wrap">
-      <!-- Use the ActorCard component -->
+    <div class="flex flex-wrap justify-content-center align-items-center">
       <actor-card
         v-for="actor in filteredActors"
         :key="actor.id"
@@ -18,7 +17,7 @@
         @show-details="showActorDetails"
       />
     </div>
-
+    <div class="flex flex-col items-center justify-center">
     <div class="mt-4">
       <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" class="bg-blue-500 text-white px-4 py-2 mr-2">
         Previous Page
@@ -32,7 +31,7 @@
     <button @click="buttonAddActor" class="bg-blue-500 text-white px-4 py-2 mt-4">
       Add Actor
     </button>
-
+  </div>
     <div v-if="formAddActor" class="mt-4">
       <form action="" method="post">
         <label for="firstname" class="block text-sm font-medium text-gray-700">Firstname</label>
@@ -71,7 +70,7 @@ export default {
       createdAt: '',
       searchTerm: '',
       currentPage: 1,
-      totalPages: 5,
+      totalPages: 10,
     };
   },
   computed: {

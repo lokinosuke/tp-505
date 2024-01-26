@@ -95,19 +95,18 @@ export default {
 <template>
   <div>
     <div class="mb-8">
-      <h1 class="text-4xl font-bold mb-6">Last 4 Movies</h1>
+      <h1 class="text-2xl font-bold mb-4">Last 4 movies</h1>
       <div class="flex flex-wrap -mx-4">
-        <MovieCard v-for="movie in lastFourMovies" :key="movie.id" :movie="movie" class="w-full sm:w-1/2 lg:w-1/4 xl:w-1/4 px-4 mb-6 transition duration-300 transform hover:scale-105" />
+        <MovieCard v-for="movie in lastFourMovies" :key="movie.id" :movie="movie" class="w-full sm:w-1/2 lg:w-1/4 xl:w-1/4 px-4 mb-4" />
       </div>
     </div>
 
     <div>
-      <h1 class="text-4xl font-bold mb-6">Last 4 Actors</h1>
+      <h1 class="text-2xl font-bold mb-4">Last 4 actors</h1>
       <div class="flex flex-wrap -mx-4">
-        <ActorCard v-for="actor in lastFourActors" :key="actor.id" :actor="actor" class="w-full sm:w-1/2 lg:w-1/4 xl:w-1/4 px-4 mb-6 transition duration-300 transform hover:scale-105" />
+        <ActorCard v-for="actor in lastFourActors" :key="actor.id" :actor="actor" class="w-full sm:w-1/2 lg:w-1/4 xl:w-1/4 px-4 mb-4" />
       </div>
     </div>
   </div>
 </template>
-
 

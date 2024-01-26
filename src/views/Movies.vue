@@ -16,7 +16,7 @@ export default {
       genre: '',
       searchTerm: '',
       currentPage: 1,
-      totalPages: 5,
+      totalPages: 10,
     };
   },
   computed: {
@@ -84,15 +84,23 @@ export default {
 };
 </script>
 <template>
-  <div>
-    <input v-model="searchTerm" type="text" placeholder="Search movies..." class="w-full mb-2 p-1 border border-gray-300 rounded" />
-    <div class="flex flex-wrap column" v-if="filteredMovies.length">
-      <MovieCard v-for="movie in filteredMovies" :key="movie.id" :movie="movie" />
+  <div class="p-4">
+    <input 
+    v-model="searchTerm" 
+    type="text" placeholder="Search movies..." 
+    class="w-full mb-2 p-1 border border-gray-300 rounded" 
+    />
+    <div class="flex flex-wrap column justify-content-center align-items-center" v-if="filteredMovies.length">
+      <MovieCard 
+      v-for="movie in filteredMovies" 
+      :key="movie.id" 
+      :movie="movie" />
     </div>
     <div v-else>
       <p>No movies found</p>
     </div>
-    <div class="mt-4">
+    <div class="flex flex-col items-center justify-center">
+          <div class="mt-4">
       <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" class="bg-blue-500 text-white px-4 py-2 mr-2 rounded">
         Previous Page
       </button>
@@ -102,6 +110,7 @@ export default {
       </button>
     </div>
     <button @click="buttonAddMovie" class="bg-gray-500 text-white px-2 py-1 rounded mt-4">Add Movie</button>
+    </div>
     <div v-if="formAddMovie" class="mt-4">
       <form action="" method="post">
         <label for="title" class="block mb-1">Title:</label>
