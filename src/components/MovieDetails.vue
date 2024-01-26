@@ -9,6 +9,7 @@
         <p class="mb-1"><strong>Created At:</strong> {{ movie.createdAt }}</p>
         <p class="mb-1"><strong>Genre:</strong> {{ movie.genre }}</p>
         <button @click="toggleEditMode" class="bg-blue-500 text-white px-2 py-1 rounded">Modify</button>
+        <button @click="deleteMovie" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
       </div>
       <form v-else @submit.prevent="submitMovieDetails" class="mb-4">
         <!-- Edit mode -->
@@ -60,6 +61,24 @@ export default {
     this.toggleEditMode(); // Switch back to display mode after saving changes
   } catch (error) {
     console.error('Error updating movie details:', error);
+  }
+},
+async deleteMovie() {
+  // Display a confirmation dialog
+  const confirmed = window.confirm("Are you sure you want to delete this movie?");
+
+  // Check if the user confirmed the deletion
+  if (confirmed) {
+    try {
+      // Send updated actor details to the server
+      await UserService.deleteMovie(this.movie.id);
+      console.log('Actor deleted successfully!');
+      
+      // Redirect to the actors page
+      this.$router.push('/movies'); // Assuming the route for the actors page is '/actors'
+    } catch (error) {
+      console.error('Error deleting movie:', error);
+    }
   }
 },
 

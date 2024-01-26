@@ -9,6 +9,7 @@
         <p><strong>Date of Birth:</strong> {{ actor.dob }}</p>
         <p><strong>Created At:</strong> {{ actor.createdAt }}</p>
         <button @click="toggleEditMode" class="bg-blue-500 text-white px-2 py-1 rounded">Modify</button>
+        <button @click="deleteActor" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
       </div>
 
       <form v-else @submit.prevent="submitActorDetails">
@@ -68,7 +69,26 @@ export default {
     console.error('Error updating actor details:', error);
   }
 },
+async deleteActor() {
+  // Display a confirmation dialog
+  const confirmed = window.confirm("Are you sure you want to delete this actor?");
 
+  // Check if the user confirmed the deletion
+  if (confirmed) {
+    try {
+      // Send updated actor details to the server
+      await UserService.deleteActor(this.actor.id);
+      console.log('Actor deleted successfully!');
+      
+      // Redirect to the actors page
+      this.$router.push('/actors'); // Assuming the route for the actors page is '/actors'
+    } catch (error) {
+      console.error('Error deleting actor:', error);
+    }
+  }
+},
+
+ 
     toggleEditMode() {
       this.editMode = !this.editMode;
     },

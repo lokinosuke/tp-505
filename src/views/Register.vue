@@ -43,7 +43,7 @@
       return {
         title: "Registration",
         email: "",
-        password: ""
+        plainPassword: ""
       }
     },
     computed: {
@@ -52,25 +52,28 @@
     methods: {
       ...mapActions(useSession, ["login"]),
       async registerUser() {
-        try {
-          const response = await UserService.register({ email: this.email, password: this.password });
-  
-          if (response.status === 201) {
-            // Registration successful, now login the user
-            await this.loginUser();
-  
-            // Redirect to a different page if needed
-            this.$router.push('/dashboard');
-          } else {
-            // Handle registration failure and display detailed error information
-            const errorData = await response.json();
-            console.error('Registration failed:', errorData);
-          }
-        } catch (error) {
-          // Handle unexpected errors (e.g., network issues)
-          console.error('Unexpected error during registration:', error);
-        }
-      },
+  try {
+    const response = await UserService.register({
+      email: this.email,
+      plainPassword: this.password,
+    });
+
+    if (response.status === 201) {
+      // Registration successful, now login the user
+      await this.loginUser();
+
+      // Redirect to a different page if needed
+      this.$router.push('/login');
+    } else {
+      // Handle registration failure and display detailed error information
+      const errorData = await response.json();
+      console.error('Registration failed:', errorData);
+    }
+  } catch (error) {
+    // Handle unexpected errors (e.g., network issues)
+    console.error('Unexpected error during registration:', error);
+  }
+},
       async loginUser() {
         try {
           // Use the same credentials used for registration

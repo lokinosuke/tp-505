@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
-import Actors from '../components/Actors.vue'
-import Movies from '../components/Movies.vue'
+import Actors from '../views/Actors.vue'
+import Movies from '@/views/Movies.vue'
 import Categories from '../views/Categories.vue'
 import MovieDetails from '@/components/MovieDetails.vue'
 import ActorDetails from '@/components/ActorDetails.vue'
+import MovieCard from '@/components/MovieCard.vue'
+import ActorCard from '@/components/ActorCard.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
+import UserProfile from '@/views/UserProfile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,7 +55,13 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: Register
-    }
+    },
+    { 
+      path: '/profile',  
+      name: 'profile',
+      component: UserProfile,
+      props: true
+    },
 
   ]
 })

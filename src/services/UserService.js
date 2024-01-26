@@ -22,12 +22,20 @@ export default {
   user () {
     return api('/users')
   },
+  getUser () {
+    return api('/me')
+  },
   getActors (pageNumber) {
-    return api('/actors')
+    return api('/actors?page='+pageNumber)
   },
   getActorDetails (actorId) {
         return api('/actors/' + actorId)
     },
+  deleteActor (actorId) {
+    return api('/actors/' + actorId, {
+      method: 'DELETE'
+    })
+  },
   postActor (credentials) {
     return api('/actors', {
       method: 'POST',
@@ -43,7 +51,13 @@ export default {
     }) },
 
     getMovies (pageNumber) {
+        return api('/movies?page='+pageNumber)
+    },
+    getLastMovies () {
         return api('/movies')
+    },
+    getLastActors () {
+        return api('/actors')
     },
     getMovieDetails (movieId) {
         return api('/movies/' + movieId)
@@ -61,6 +75,11 @@ export default {
             body: JSON.stringify(credentials),
 
         }) },
+    deleteMovie (movieId) {
+        return api('/movies/' + movieId, {
+            method: 'DELETE'
+        })
+    },
     getCategories (pageNumber) {
         return api('/categories')
     },

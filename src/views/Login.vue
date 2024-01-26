@@ -2,7 +2,6 @@
   <div id="login-form" class="flex justify-center items-center h-screen">
     <form @submit.prevent="postUser()" class="bg-white p-8 rounded shadow-md w-96">
       <h1 class="text-2xl font-semibold mb-4">{{ title }}</h1>
-      <p class="mb-4">Fill out this form to login.</p>
       <hr class="mb-4" />
 
       <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
